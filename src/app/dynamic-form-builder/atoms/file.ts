@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-// text,email,tel,textarea,password, 
 @Component({
-    selector: 'file',
-    template: `
+  selector: 'file',
+  template: `
       <div [formGroup]="form">
         <div *ngIf="!field.value" class="drop-container dropzone" dropZone (hovered)="toggleHover($event)"
           (dropped)="field.onUpload($event)" [class.hovering]="isHovering">
@@ -24,8 +23,8 @@ import { FormGroup } from '@angular/forms';
         </div>
       </div> 
     `,
-    styles:[
-      `
+  styles: [
+    `
       .drop-container {
         background: #fff;
         border-radius: 6px;
@@ -69,20 +68,20 @@ import { FormGroup } from '@angular/forms';
         transition: width 0.1s ease;
       }
       `
-    ]
+  ]
 })
 export class FileComponent {
-    @Input() field:any = {};
-    @Input() form:FormGroup;
-    get isValid() { return this.form.controls[this.field.name].valid; }
-    get isDirty() { return this.form.controls[this.field.name].dirty; }
-  
-    constructor() {
+  @Input() field: any = {};
+  @Input() form: FormGroup;
+  get isValid() { return this.form.controls[this.field.name].valid; }
+  get isDirty() { return this.form.controls[this.field.name].dirty; }
 
-    }
+  constructor() {
 
-    ngOnChange(){
-      console.log(this.field.value);
-      // this.field.value.
-    }
+  }
+
+  ngOnChange() {
+    console.log(this.field.value);
+    // this.field.value.
+  }
 }
