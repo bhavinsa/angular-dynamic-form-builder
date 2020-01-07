@@ -42,22 +42,18 @@ export class DynamicFormBuilderComponent implements OnInit {
   ngOnInit() {
     const fieldsCtrls = {};
     for (const f of this.fields) {
-      if (f.type === 'text' || f.type === 'dropdown') {
-        fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
-      }
-      if (f.type === 'radio') {
-        if (f.required == true) {
+      if (f.type !== 'checkbox') {
+        if (f.required === true) {
           fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
         } else {
           fieldsCtrls[f.name] = new FormControl(f.value || '');
         }
-      }
-      if (f.type === 'checkbox') {
+      } else {
         const opts = {};
         for (const opt of f.options) {
           opts[opt.key] = new FormControl(opt.value);
         }
-        fieldsCtrls[f.name] = new FormGroup(opts)
+        fieldsCtrls[f.name] = new FormGroup(opts);
       }
     }
     this.form = new FormGroup(fieldsCtrls);

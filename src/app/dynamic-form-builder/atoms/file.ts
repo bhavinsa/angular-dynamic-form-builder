@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
           <p class="m-0">
             Drag a file here or
             <label class="upload-button">
-              <input type="file" multiple="" (change)="field.onUpload($event.target.files)"> browse
+              <input [formControlName]="field.name" type="file" multiple="" (change)="field.onUpload($event.target.files)"> browse
             </label>
             to upload.
           </p>
